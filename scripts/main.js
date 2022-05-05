@@ -1,29 +1,29 @@
 // Shayla Lee April 2022
-// This code generates a suggested order for a complex to-do list based on the user's stress level
-// I was helped by Leffin Christopher when working through the initial array structure
-// as well as making my user input manipulatable (not strings)
+// This code collects the user input and stores it in local storage
 
-// These arrays will hold the input 
+// These arrays will hold task input 
 let workTasks;
 let otherTasks;
 
-// Template represents the output
-let template;
+// And this holds slider input
+let stressLevel;
 
 // Waits for everything to load 
 document.addEventListener('DOMContentLoaded', function(){
-    document.querySelector("#submit").addEventListener("click", generateSuggestion);
+    document.querySelector("#submit").addEventListener("click", getUserList);
 });
 
-function generateSuggestion(){
+function getUserList(){
     // Resets arrays every time the generate button is pressed
     workTasks = [];
     otherTasks = [{task: "go for a quick walk", time: 15}, {task: "move around and stop looking at screens", time: 10}];
 
     getWorkTasks();
     getOtherTasks();
-    decideTemplate();    
-    displaySuggestion();
+    getStressLevel();
+    storeInput();
+    // decideTemplate();    
+    // displaySuggestion();
 }
 
 function getWorkTasks(){
@@ -42,25 +42,25 @@ function getWorkTasks(){
 
     // After the array is loaded, take the average of the 
     // For work: if it takes longer than average, make it twice as likely
-    let workTimeTotal = 0;
+    // let workTimeTotal = 0;
 
-    for(let i = 0; i < workTasks.length; i++){
-        workTimeTotal += workTasks[i].time;
-    }
+    // for(let i = 0; i < workTasks.length; i++){
+    //     workTimeTotal += workTasks[i].time;
+    // }
 
-    const workTimeAvg = workTimeTotal/workTasks.length;
-    console.log(`Average: ${workTimeAvg}, Total: ${workTimeTotal}`);
+    // const workTimeAvg = workTimeTotal/workTasks.length;
+    // console.log(`Average: ${workTimeAvg}, Total: ${workTimeTotal}`);
 
     // Set a reference for the current length of the array
-    const originalWTasks = workTasks.length;
+    // const originalWTasks = workTasks.length;
 
     // Adds another instance of those greater than the average
     // This makes them more likely and stops once it sees all of them once
-    for(let i = 0; i < originalWTasks; i++){
-        if (workTasks[i].time > workTimeAvg){
-            workTasks.push(workTasks[i]);
-        }
-    }
+    // for(let i = 0; i < originalWTasks; i++){
+    //     if (workTasks[i].time > workTimeAvg){
+    //         workTasks.push(workTasks[i]);
+    //     }
+    // }
     console.log(workTasks);
     return(workTasks);
 }
@@ -76,18 +76,35 @@ function getOtherTasks(){
             otherTasks.push({task: otherClass[i].value, time: parseInt(otherTimeClass[i].value)});
         }
     }
-    const originalOTasks = otherTasks.length;
+    // const originalOTasks = otherTasks.length;
 
     // For other: twice as likely if <= 20
-    for (let i = 0; i < originalOTasks; i++){
-        if (otherTasks[i].time <= 20){
-            otherTasks.push(otherTasks[i]);
-        }
-    }
+    // for (let i = 0; i < originalOTasks; i++){
+    //     if (otherTasks[i].time <= 20){
+    //         otherTasks.push(otherTasks[i]);
+    //     }
+    // }
     console.log(otherTasks);
     return(otherTasks);
 }
 
+function getStressLevel(){
+    // Get slider value and parse to integer
+    const sliderInput = document.getElementById('stressLevel');
+    stressLevel = parseInt(sliderInput.value);
+    console.log("stress level = " + stressLevel); 
+    return(stressLevel);
+}
+
+// Put the user input in local storage
+function storeInput(){
+    // https://catalins.tech/store-array-in-localstorage
+    localStorage.setItem("otherTasks", JSON.stringify(otherTasks));
+    localStorage.setItem("workTasks", JSON.stringify(workTasks));
+    localStorage.setItem("stress", stressLevel);
+}
+
+/*
 function decideTemplate(){
     // Get slider value and parse to integer
     const sliderInput = document.getElementById('stressLevel');
@@ -132,4 +149,4 @@ function displaySuggestion(){
     const conclusion = document.getElementById('conclusion');
     conclusion.innerHTML = "That is my suggestion. You may take it, adjust it, or leave it, but it still stands. This tool will be here for you if you ever would like to use it. Take care of yourself, and good luck with your list!";
     return;
-}
+}*/

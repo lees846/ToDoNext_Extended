@@ -3,42 +3,59 @@
 // I was helped by Leffin Christopher when working through the initial array structure
 // as well as making my user input manipulatable (not strings)
 
-// These arrays will hold the input 
+// These arrays will hold the input from the user taken from local storage
 let workTasks;
 let otherTasks;
+
+// Variable to hold stress level
+let stressLevel;
 
 // Template represents the output
 let template;
 
-// Waits for everything to load 
-document.addEventListener('DOMContentLoaded', function(){
-    document.querySelector("#submit").addEventListener("click", generateSuggestion);
-});
+// Waits for everything to load then generates a suggestion
+document.addEventListener('DOMContentLoaded', generateSuggestion());
 
 function generateSuggestion(){
     // Resets arrays every time the generate button is pressed
-    workTasks = [];
-    otherTasks = [{task: "go for a quick walk", time: 15}, {task: "move around and stop looking at screens", time: 10}];
+    // workTasks = [];
+    // otherTasks = [{task: "go for a quick walk", time: 15}, {task: "move around and stop looking at screens", time: 10}];
 
-    getWorkTasks();
-    getOtherTasks();
+    convertData();
+    biasWorkTasks();
+    biasOtherTasks();
     decideTemplate();    
     displaySuggestion();
 }
 
-function getWorkTasks(){
+function convertData(){
+    // https://catalins.tech/store-array-in-localstorage for storing and getting arrays from local storage
+    const retrieved_wt = localStorage.getItem("workTasks");
+    workTasks = JSON.parse(retrieved_wt);
+    console.log(workTasks);
+
+    const retrieved_ot = localStorage.getItem("otherTasks");
+    otherTasks = JSON.parse(retrieved_ot);
+    console.log(otherTasks);
+
+    const retrieved_sl = localStorage.getItem("stress");
+    stressLevel = JSON.parse(retrieved_sl);
+    console.log(stressLevel);
+}
+
+function biasWorkTasks(){
     // Get values for the user-defined work tasks
-    const workClass = document.getElementsByClassName('work');
-    const workTimeClass = document.getElementsByClassName('workTime');
-    console.log(workClass);
+    // const workClass = document.getElementsByClassName('work');
+    // const workTimeClass = document.getElementsByClassName('workTime');
+    // console.log(workClass);
     
     // Push the work tasks to the workTasks array
-    for (let i = 0; i < workClass.length; i++){
-        // only push if there's input
-        if(workClass[i].value){
-            workTasks.push({task: workClass[i].value, time: parseInt(workTimeClass[i].value)});
-        }
-    }
+    // for (let i = 0; i < workClass.length; i++){
+    //     // only push if there's input
+    //     if(workClass[i].value){
+    //         workTasks.push({task: workClass[i].value, time: parseInt(workTimeClass[i].value)});
+    //     }
+    // }
 
     // After the array is loaded, take the average of the 
     // For work: if it takes longer than average, make it twice as likely
@@ -65,20 +82,22 @@ function getWorkTasks(){
     return(workTasks);
 }
 
-function getOtherTasks(){
+function biasOtherTasks(){
     // Get values for the user-defined "other" tasks
-    const otherClass = document.getElementsByClassName('other');
-    const otherTimeClass = document.getElementsByClassName('otherTime');
+    // const otherClass = document.getElementsByClassName('other');
+    // const otherTimeClass = document.getElementsByClassName('otherTime');
 
-    for (let i = 0; i < otherClass.length; i++){
-        // only push if there's input
-        if (otherClass[i].value){
-            otherTasks.push({task: otherClass[i].value, time: parseInt(otherTimeClass[i].value)});
-        }
-    }
+    // for (let i = 0; i < otherClass.length; i++){
+    //     // only push if there's input
+    //     if (otherClass[i].value){
+    //         otherTasks.push({task: otherClass[i].value, time: parseInt(otherTimeClass[i].value)});
+    //     }
+    // }
+
+    // Stores the max number of indicies the for loop should look through
     const originalOTasks = otherTasks.length;
 
-    // For other: twice as likely if <= 20
+    // For other: task is twice as likely if <= 20 min
     for (let i = 0; i < originalOTasks; i++){
         if (otherTasks[i].time <= 20){
             otherTasks.push(otherTasks[i]);
@@ -90,16 +109,16 @@ function getOtherTasks(){
 
 function decideTemplate(){
     // Get slider value and parse to integer
-    const sliderInput = document.getElementById('stressLevel');
-    const stressLevel = parseInt(sliderInput.value);
-    console.log("stress level = " + stressLevel); 
+    // const sliderInput = document.getElementById('stressLevel');
+    // stressLevel = parseInt(sliderInput.value);
+    // console.log("stress level = " + stressLevel); 
 
     let randWork = workTasks[Math.floor(Math.random()*workTasks.length)].task;
     let randWork2 = workTasks[Math.floor(Math.random()*workTasks.length)].task;
     let randOther = otherTasks[Math.floor(Math.random()*otherTasks.length)].task;
     let randOther2 = otherTasks[Math.floor(Math.random()*otherTasks.length)].task;
 
-    // Finds the index of the longest task and 
+    // Finds the index of the longest task so it can be prioritized for one template
     let longIndex = 0;
     let longestTask = workTasks[longIndex].time;
     for (let i = 0; i < workTasks.length; i++){
@@ -112,7 +131,7 @@ function decideTemplate(){
 
     // Pick template depending on stress level
     if (stressLevel <= 3){
-        template = `I suggest that you start ${workTasks[longIndex].task}, take a break after one or two hours to ${randOther}, and get back to it when you're done.`
+        template = `I suggest that you start to ${workTasks[longIndex].task}, take a break after one or two hours to ${randOther}, and get back to it when you're done.`
         // "Work on <the thing that takes you the most time>, take a break after one or two hours to <random other>, and get back to it.""
     } else if (stressLevel > 3 && stressLevel <= 6){
         template = `It might be good to ${randWork}, pause after one hour to ${randOther}, then go back to ${randWork} or ${randWork2} to switch it up.`
@@ -121,7 +140,7 @@ function decideTemplate(){
         template = `Before you get started, I highly recommend you ${randOther}. This may help you reset before ${randWork}, then ${randOther2} after an hour of that if you're still overwhelmed.`
         // "Before you get started, <random other>. This may help you reset before you work on <random work>, then <random other> after an hour of that if you're still overwhelmed."
     }
-    // console.log(template);
+    console.log(template);
     return(template);
 }
 
