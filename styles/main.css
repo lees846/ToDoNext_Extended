@@ -15,7 +15,7 @@
 
 body {  
     /* https://www.w3schools.com/htmL/html_images_background.asp */
-    background-image: url('./assets/notebookLines.png');
+    background-image: url('../assets/notebookLines.png');
     background-size: 100% 100%;
     background-repeat: no-repeat;
 
