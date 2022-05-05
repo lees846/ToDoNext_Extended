@@ -1,0 +1,112 @@
+/* 
+    The goal is to make the page look like a notebook 
+    which would be interactve and write back to you,
+    giving you proper suggestions for your list of tasks.
+
+    I included some sticky notes, too!
+*/
+
+.container {
+    display: flex;
+    flex-direction: column;
+   
+}
+
+body {  
+    /* https://www.w3schools.com/htmL/html_images_background.asp */
+    background-image: url('../assets/notebookLines.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+
+    background-color: rgb(255, 245, 202);
+    color: rgb(2, 2, 77);
+    padding: 0px;
+    margin: 0px;
+    margin-left: 12%;
+    margin-top: 40px;
+    max-width: 700px;
+    min-height: 1000px;
+}
+
+h1, h2, label {
+    font-family: blockhead-black-face, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    justify-content: center;
+}
+
+h1 {
+    font-size: 32px;
+}
+
+h2 {
+    font-size: 24px;
+}
+p {
+    font-family: klee-one, sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 18px;
+}
+
+label {
+    font-size: 20px;
+}
+
+li {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+input {
+    color: navy;
+    background-color: rgb(255, 244, 158);
+    border-color: navy;
+    border-width: 0.5px;
+    border-radius: 4px;
+    margin: 3px;
+    box-shadow: 5px 8px 5px rgba(156, 114, 0, 0.421);
+}
+
+input:hover {
+    background-color: white;
+    border-width: 1px;
+}
+
+.workTime, .otherTime {
+    width: 50px;
+}
+
+/* slider */
+/* https://www.w3schools.com/howto/howto_js_rangeslider.asp */
+#stressLevel {
+    width: 500px;
+    margin: 20px;
+     -webkit-appearance: none;
+    background:navy;
+    
+    cursor: pointer;
+}
+
+input#submit {
+    margin: 20px;
+    width: 500px;
+    height: 50px;
+    font-family: blockhead-black-face, sans-serif;
+    font-size: 22px;
+    border-width: 1.5px;
+}
+input#submit:hover {
+    border-color: blue;
+    cursor: pointer;
+}
+
+#outputSect, #begin {
+    background-color: rgb(255, 244, 158);
+    box-shadow: 5px 8px 5px rgba(156, 114, 0, 0.551);
+    margin-top: 20px;
+    margin-left: -3px;
+    margin-bottom: 20px;
+    padding: 15px;
+}
