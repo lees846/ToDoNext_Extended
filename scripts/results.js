@@ -17,10 +17,6 @@ let template;
 document.addEventListener('DOMContentLoaded', generateSuggestion());
 
 function generateSuggestion(){
-    // Resets arrays every time the generate button is pressed
-    // workTasks = [];
-    // otherTasks = [{task: "go for a quick walk", time: 15}, {task: "move around and stop looking at screens", time: 10}];
-
     convertData();
     biasWorkTasks();
     biasOtherTasks();
@@ -44,19 +40,6 @@ function convertData(){
 }
 
 function biasWorkTasks(){
-    // Get values for the user-defined work tasks
-    // const workClass = document.getElementsByClassName('work');
-    // const workTimeClass = document.getElementsByClassName('workTime');
-    // console.log(workClass);
-    
-    // Push the work tasks to the workTasks array
-    // for (let i = 0; i < workClass.length; i++){
-    //     // only push if there's input
-    //     if(workClass[i].value){
-    //         workTasks.push({task: workClass[i].value, time: parseInt(workTimeClass[i].value)});
-    //     }
-    // }
-
     // After the array is loaded, take the average of the 
     // For work: if it takes longer than average, make it twice as likely
     let workTimeTotal = 0;
@@ -83,17 +66,6 @@ function biasWorkTasks(){
 }
 
 function biasOtherTasks(){
-    // Get values for the user-defined "other" tasks
-    // const otherClass = document.getElementsByClassName('other');
-    // const otherTimeClass = document.getElementsByClassName('otherTime');
-
-    // for (let i = 0; i < otherClass.length; i++){
-    //     // only push if there's input
-    //     if (otherClass[i].value){
-    //         otherTasks.push({task: otherClass[i].value, time: parseInt(otherTimeClass[i].value)});
-    //     }
-    // }
-
     // Stores the max number of indicies the for loop should look through
     const originalOTasks = otherTasks.length;
 
@@ -108,11 +80,6 @@ function biasOtherTasks(){
 }
 
 function decideTemplate(){
-    // Get slider value and parse to integer
-    // const sliderInput = document.getElementById('stressLevel');
-    // stressLevel = parseInt(sliderInput.value);
-    // console.log("stress level = " + stressLevel); 
-
     let randWork = workTasks[Math.floor(Math.random()*workTasks.length)].task;
     let randWork2 = workTasks[Math.floor(Math.random()*workTasks.length)].task;
     let randOther = otherTasks[Math.floor(Math.random()*otherTasks.length)].task;

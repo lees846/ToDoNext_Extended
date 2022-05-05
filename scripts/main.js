@@ -22,8 +22,6 @@ function getUserList(){
     getOtherTasks();
     getStressLevel();
     storeInput();
-    // decideTemplate();    
-    // displaySuggestion();
 }
 
 function getWorkTasks(){
@@ -40,27 +38,6 @@ function getWorkTasks(){
         }
     }
 
-    // After the array is loaded, take the average of the 
-    // For work: if it takes longer than average, make it twice as likely
-    // let workTimeTotal = 0;
-
-    // for(let i = 0; i < workTasks.length; i++){
-    //     workTimeTotal += workTasks[i].time;
-    // }
-
-    // const workTimeAvg = workTimeTotal/workTasks.length;
-    // console.log(`Average: ${workTimeAvg}, Total: ${workTimeTotal}`);
-
-    // Set a reference for the current length of the array
-    // const originalWTasks = workTasks.length;
-
-    // Adds another instance of those greater than the average
-    // This makes them more likely and stops once it sees all of them once
-    // for(let i = 0; i < originalWTasks; i++){
-    //     if (workTasks[i].time > workTimeAvg){
-    //         workTasks.push(workTasks[i]);
-    //     }
-    // }
     console.log(workTasks);
     return(workTasks);
 }
@@ -76,14 +53,7 @@ function getOtherTasks(){
             otherTasks.push({task: otherClass[i].value, time: parseInt(otherTimeClass[i].value)});
         }
     }
-    // const originalOTasks = otherTasks.length;
 
-    // For other: twice as likely if <= 20
-    // for (let i = 0; i < originalOTasks; i++){
-    //     if (otherTasks[i].time <= 20){
-    //         otherTasks.push(otherTasks[i]);
-    //     }
-    // }
     console.log(otherTasks);
     return(otherTasks);
 }
@@ -103,50 +73,3 @@ function storeInput(){
     localStorage.setItem("workTasks", JSON.stringify(workTasks));
     localStorage.setItem("stress", stressLevel);
 }
-
-/*
-function decideTemplate(){
-    // Get slider value and parse to integer
-    const sliderInput = document.getElementById('stressLevel');
-    const stressLevel = parseInt(sliderInput.value);
-    console.log("stress level = " + stressLevel); 
-
-    let randWork = workTasks[Math.floor(Math.random()*workTasks.length)].task;
-    let randWork2 = workTasks[Math.floor(Math.random()*workTasks.length)].task;
-    let randOther = otherTasks[Math.floor(Math.random()*otherTasks.length)].task;
-    let randOther2 = otherTasks[Math.floor(Math.random()*otherTasks.length)].task;
-
-    // Finds the index of the longest task and 
-    let longIndex = 0;
-    let longestTask = workTasks[longIndex].time;
-    for (let i = 0; i < workTasks.length; i++){
-        const currentTask = workTasks[i].time;
-        if (currentTask > longestTask){
-            longestTask = currentTask;
-            longIndex = i;
-        }
-    }
-
-    // Pick template depending on stress level
-    if (stressLevel <= 3){
-        template = `I suggest that you start ${workTasks[longIndex].task}, take a break after one or two hours to ${randOther}, and get back to it when you're done.`
-        // "Work on <the thing that takes you the most time>, take a break after one or two hours to <random other>, and get back to it.""
-    } else if (stressLevel > 3 && stressLevel <= 6){
-        template = `It might be good to ${randWork}, pause after one hour to ${randOther}, then go back to ${randWork} or ${randWork2} to switch it up.`
-        // "Work on <random work task>, pause after one hour to <random other>, then continue or work on <random work> now to switch it up."
-    } else if (stressLevel > 6){
-        template = `Before you get started, I highly recommend you ${randOther}. This may help you reset before ${randWork}, then ${randOther2} after an hour of that if you're still overwhelmed.`
-        // "Before you get started, <random other>. This may help you reset before you work on <random work>, then <random other> after an hour of that if you're still overwhelmed."
-    }
-    // console.log(template);
-    return(template);
-}
-
-function displaySuggestion(){
-    const outputSect = document.getElementById('output');
-    outputSect.innerHTML = "Okay. " + template;
-
-    const conclusion = document.getElementById('conclusion');
-    conclusion.innerHTML = "That is my suggestion. You may take it, adjust it, or leave it, but it still stands. This tool will be here for you if you ever would like to use it. Take care of yourself, and good luck with your list!";
-    return;
-}*/
