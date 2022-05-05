@@ -1,5 +1,6 @@
 // Shayla Lee April 2022
-// This code collects the user input and stores it in local storage
+// This code collects the user input and puts it in local storage to be used
+// by other parts of the site and refilled if the page is returned to
 
 // These arrays will hold task input 
 let workTasks;
@@ -22,6 +23,11 @@ function getUserList(){
     getOtherTasks();
     getStressLevel();
     storeInput();
+
+    if (localStorage.getItem("length") > 0) {
+        // repopulate the input fields with the stored data
+        repopulate();
+    }
 }
 
 function getWorkTasks(){
@@ -72,4 +78,11 @@ function storeInput(){
     localStorage.setItem("otherTasks", JSON.stringify(otherTasks));
     localStorage.setItem("workTasks", JSON.stringify(workTasks));
     localStorage.setItem("stress", stressLevel);
+}
+
+function repopulate(){
+    // access local storage
+    const remembered_wt = localStorage.getItem("workTasks");
+    // new variable for filling = JSON.parse(remembered_wt);
+    // set input field values to existing stored input
 }
