@@ -20,7 +20,8 @@ function generateSuggestion(){
     convertData();
     biasWorkTasks();
     biasOtherTasks();
-    decideTemplate();    
+    decideTemplate();
+    displayList();   
     displaySuggestion();
 }
 
@@ -109,6 +110,10 @@ function decideTemplate(){
     }
     console.log(template);
     return(template);
+}
+
+function displayList(){
+    console.log("displayList is being called");
 }
 
 function displaySuggestion(){

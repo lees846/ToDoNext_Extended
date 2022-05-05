@@ -8,10 +8,10 @@
         <link rel="stylesheet" type="text/css" href="styles/main.css">
     </head>
     <body>
-        <main class="container">
-            <nav id="navigation">
-                <a id="about" href="./pages/about.html">About</a>
-            </nav>            
+        <nav id="navigation">
+            <a id="about" href="./pages/about.html">About</a>
+        </nav>
+        <main class="container">            
             <header>
                 <h1> 
                     So. You have a lot of work to do. It's okay.
@@ -42,28 +42,28 @@
                 </label>
                 <ul id="workList">
                     <li>
-                        <input class="work" type="text">
-                        <input class="workTime" type="number" min="1">
+                        <input class="work" id="work0" type="text">
+                        <input class="workTime" type="number" min="1" placeholder="min">
                     </li>
                     <li>
                         <input class="work" type="text">
-                        <input class="workTime" type="number" min="1">
+                        <input class="workTime" type="number" min="1" placeholder="min">
                     </li>
                     <li>
                         <input class="work" type="text">
-                        <input class="workTime" type="number" min="1">
+                        <input class="workTime" type="number" min="1" placeholder="min">
                     </li>
                     <li>
                         <input class="work" type="text">
-                        <input class="workTime" type="number" min="1">
+                        <input class="workTime" type="number" min="1" placeholder="min">
                     </li>
                     <li>
                         <input class="work" type="text">
-                        <input class="workTime" type="number" min="1">
+                        <input class="workTime" type="number" min="1" placeholder="min">
                     </li>
                     <li>
                         <input class="work" type="text">
-                        <input class="workTime" type="number" min="1">
+                        <input class="workTime" type="number" min="1" placeholder="min">
                     </li>
                 </ul>
             </section>
@@ -74,27 +74,27 @@
                 <ul id="otherList">
                     <li>
                         <input class="other" type="text">
-                        <input class="otherTime" type="number" min="1">
+                        <input class="otherTime" type="number" min="1" placeholder="min">
                     </li>
                     <li>
                         <input class="other" type="text">
-                        <input class="otherTime" type="number" min="1">
+                        <input class="otherTime" type="number" min="1" placeholder="min">
                     </li>
                     <li>
                         <input class="other" type="text">
-                        <input class="otherTime" type="number" min="1">
+                        <input class="otherTime" type="number" min="1" placeholder="min">
                     </li>
                     <li>
                         <input class="other" type="text">
-                        <input class="otherTime" type="number" min="1">
+                        <input class="otherTime" type="number" min="1" placeholder="min">
                     </li>
                     <li>
                         <input class="other" type="text">
-                        <input class="otherTime" type="number" min="1">
+                        <input class="otherTime" type="number" min="1" placeholder="min">
                     </li>
                     <li>
                         <input class="other" type="text">
-                        <input class="otherTime" type="number" min="1">
+                        <input class="otherTime" type="number" min="1" placeholder="min">
                     </li>
                 </ul>
             </section>
@@ -109,7 +109,7 @@
                     When you're ready, you can submit your tasks to be processed.
                 </label>
                 <a href="./pages/results.html">
-                    <input type="submit" id="submit" value="Generate Suggestion">
+                    <input type="button" id="submit" value="Generate Suggestion">
                 </a>
             </section>
         </main>

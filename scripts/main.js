@@ -11,11 +11,16 @@ let stressLevel;
 
 // Waits for everything to load 
 document.addEventListener('DOMContentLoaded', function(){
+     if (!localStorage.getItem("length")) {
+        // repopulate the input fields with the stored data
+        repopulate();
+    }
+    
     document.querySelector("#submit").addEventListener("click", getUserList);
 });
 
 function getUserList(){
-    // Resets arrays every time the generate button is pressed
+   // Resets arrays every time the generate button is pressed
     workTasks = [];
     otherTasks = [{task: "go for a quick walk", time: 15}, {task: "move around and stop looking at screens", time: 10}];
 
@@ -23,11 +28,6 @@ function getUserList(){
     getOtherTasks();
     getStressLevel();
     storeInput();
-
-    if (localStorage.getItem("length") > 0) {
-        // repopulate the input fields with the stored data
-        repopulate();
-    }
 }
 
 function getWorkTasks(){
@@ -81,8 +81,29 @@ function storeInput(){
 }
 
 function repopulate(){
+    console.log("repopulate is being called");
     // access local storage
     const remembered_wt = localStorage.getItem("workTasks");
+    const remembered_ot = localStorage.getItem("otherTasks");
+    const remembered_sl = localStorage.getItem("stress");
+    console.log(remembered_wt, remembered_ot, remembered_sl);
+
     // new variable for filling = JSON.parse(remembered_wt);
+    let oldWorkTasks = JSON.parse(remembered_wt);
+    console.log(oldWorkTasks); 
+
+    const replace_wtask = document.getElementsByClassName('work');
+    // console.log("input was " + replace_wtsk);
+    // document.getElementById('work0').value = oldWorkTasks[0].task;
+    replace_wtask[0].value = oldWorkTasks[0].task;
+    replace_wtask[1].value = oldWorkTasks[1].task;
+    // document.getElementById('work0').innerHTML = "hi";
+    console.log(oldWorkTasks[0].task);
+    // let workInput_task = document.getElementsByClassName('work').value;
+    // for (let i = 0; i < workTasks.length; i++){
+        // workInput_task.innerHTML = remembered_wt[0].task;
+        // console.log()
+    // }
+
     // set input field values to existing stored input
 }
