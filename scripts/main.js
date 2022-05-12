@@ -81,29 +81,45 @@ function storeInput(){
     localStorage.setItem("stress", stressLevel);
 }
 
+let replace_wtime;
 function repopulate(){
-    console.log("repopulate is being called");
-    // access local storage
+    // console.log("repopulate is being called");
+    // fetch local storage to get string 
     const remembered_wt = localStorage.getItem("workTasks");
     const remembered_ot = localStorage.getItem("otherTasks");
     const remembered_sl = localStorage.getItem("stress");
-    console.log(remembered_wt, remembered_ot, remembered_sl);
+    // console.log(remembered_wt, remembered_ot, remembered_sl);
 
-    // new variable for filling = JSON.parse(remembered_wt);
+    // variable for parsed data = JSON.parse(remembered_wt);
     let oldWorkTasks = JSON.parse(remembered_wt);
-    console.log("oldWorkTasks" + oldWorkTasks); 
+    let oldOtherTasks = JSON.parse(remembered_ot);
+    let oldStressLevel = JSON.parse(remembered_sl);
+    console.log(oldWorkTasks, oldOtherTasks, oldStressLevel);
 
+    // variable to hold the input fields to 
     const replace_wtask = document.getElementsByClassName('work');
-    // console.log("input was " + replace_wtsk);
+    replace_wtime = document.getElementsByClassName('workTime');
+    // console.log(oldOtherTasks[0].time);
+
     // document.getElementById('work0').value = oldWorkTasks[0].task;
     for(let i = 0; i < replace_wtask.length; i++){
-        if(replace_wtask[i]){
+        if(oldWorkTasks[i]){
             replace_wtask[i].value = oldWorkTasks[i].task;
-            console.log("I'm trying to put it back!");
         }
     }
     
-    // replace_wtask[1].value = oldWorkTasks[1].task;
+    console.log(replace_wtime);
+    console.log("input num field: " + replace_wtime[0].input);
+    for(let i = 0; i < replace_wtime.length; i++){
+        if(oldWorkTasks[i]){
+            replace_wtime[i].input = oldWorkTasks[i].time;
+            console.log("trying to place work time");
+            // This is getting the proper number for the time value but not setting it to the input field...
+            console.log(replace_wtime[i].input); 
+        }
+    }
+
+    
     // document.getElementById('work0').innerHTML = "hi";
     // let workInput_task = document.getElementsByClassName('work').value;
     // for (let i = 0; i < workTasks.length; i++){
