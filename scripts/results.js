@@ -121,21 +121,24 @@ function decideTemplate(){
 
 function displayList(){
     console.log("displayList is being called");
-    // if (stressLevel <= 3){
-    //     li = `${workTasks[longIndex].task} ${randOther} get back to it`
-        
-    // } else if (stressLevel > 3 && stressLevel <= 6){
-    //     li = `${randWork} ${randOther} ${randWork} or ${randWork2}`
-       
-    // } else if (stressLevel > 6){
-    //     li = `${randOther} ${randWork} ${randOther2}`
-       
-    // }
     const outputList = document.getElementsByClassName('todo');
-    console.log(outputList.length);
-    outputList[0].innerText = workTasks[0].task;
-    // outputList[1].innerHTML = randOther;
-    // outputList[2].innerHTML = workTasks[longIndex].task;
+
+    if (stressLevel <= 3){
+        outputList[0].innerText = "1. " + workTasks[0].task;
+        outputList[1].innerText = "2. " + randOther;
+        outputList[2].innerText = "3. Finish up" + workTasks[0].task;
+        
+    } else if (stressLevel > 3 && stressLevel <= 6){
+        outputList[0].innerText = "1. " + randWork;
+        outputList[1].innerText = "2. " + randOther;
+        outputList[2].innerText = "3. " + randWork + " or " + randWork2;
+       
+    } else if (stressLevel > 6){
+        outputList[0].innerText = "1. " + randOther;
+        outputList[1].innerText = "2. " + randWork;
+        outputList[2].innerText = "3. " + randOther2;       
+    }
+    // console.log(outputList.length);
 }
 
 function displaySuggestion(){
