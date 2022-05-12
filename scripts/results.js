@@ -99,7 +99,7 @@ function decideTemplate(){
 
     // Pick template depending on stress level
     if (stressLevel <= 3){
-        template = `I suggest that you start to ${workTasks[longIndex].task}, take a break after one or two hours to ${randOther}, and get back to it when you're done.`
+        template = `I suggest that you start with ${workTasks[longIndex].task}, take a break after one or two hours to ${randOther}, and get back to it when you're done.`
         // "Work on <the thing that takes you the most time>, take a break after one or two hours to <random other>, and get back to it.""
     } else if (stressLevel > 3 && stressLevel <= 6){
         template = `It might be good to ${randWork}, pause after one hour to ${randOther}, then go back to ${randWork} or ${randWork2} to switch it up.`

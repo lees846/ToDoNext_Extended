@@ -11,7 +11,8 @@ let stressLevel;
 
 // Waits for everything to load 
 document.addEventListener('DOMContentLoaded', function(){
-     if (!localStorage.getItem("length")) {
+    console.log(localStorage.length);
+    if (localStorage.length) {
         // repopulate the input fields with the stored data
         repopulate();
     }
@@ -90,15 +91,20 @@ function repopulate(){
 
     // new variable for filling = JSON.parse(remembered_wt);
     let oldWorkTasks = JSON.parse(remembered_wt);
-    console.log(oldWorkTasks); 
+    console.log("oldWorkTasks" + oldWorkTasks); 
 
     const replace_wtask = document.getElementsByClassName('work');
     // console.log("input was " + replace_wtsk);
     // document.getElementById('work0').value = oldWorkTasks[0].task;
-    replace_wtask[0].value = oldWorkTasks[0].task;
-    replace_wtask[1].value = oldWorkTasks[1].task;
+    for(let i = 0; i < replace_wtask.length; i++){
+        if(replace_wtask[i]){
+            replace_wtask[i].value = oldWorkTasks[i].task;
+            console.log("I'm trying to put it back!");
+        }
+    }
+    
+    // replace_wtask[1].value = oldWorkTasks[1].task;
     // document.getElementById('work0').innerHTML = "hi";
-    console.log(oldWorkTasks[0].task);
     // let workInput_task = document.getElementsByClassName('work').value;
     // for (let i = 0; i < workTasks.length; i++){
         // workInput_task.innerHTML = remembered_wt[0].task;
