@@ -48,10 +48,17 @@ p {
     font-size: 18px;
 }
 
-/* Temporary highlight for emphasis on directions */
+/* Highlights the directions for the input */
 #directions {
-    background-color: rgba(255, 255, 0, 0.453);
+    background-color: rgba(255, 255, 0, 0.328);
+    padding: 10px;
 }
+
+/* styles the whole section for instructions */
+#instructions{
+    margin-bottom: 20px;
+}
+
 #begin {
     background-color: rgb(255, 244, 158);
     box-shadow: 5px 8px 5px rgba(156, 114, 0, 0.551);
