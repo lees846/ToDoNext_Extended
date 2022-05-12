@@ -49,3 +49,21 @@ p {
 nav {
     margin-top: 20px;
 }
+
+#thrashing {
+    background-color: rgb(255, 244, 158);
+    box-shadow: 5px 8px 5px rgba(156, 114, 0, 0.551);
+    margin-top: 20px;
+    margin-left: -3px;
+    margin-bottom: 20px;
+    padding: 15px;
+    max-width: 630px;
+}
+
+#author {
+    font-family: blockhead-black-face, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    justify-content: center;
+    font-size: 16px;
+}
