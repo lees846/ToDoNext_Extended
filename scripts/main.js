@@ -97,12 +97,13 @@ function repopulate(){
     let oldStressLevel = JSON.parse(remembered_sl);
     console.log(oldWorkTasks, oldOtherTasks, oldStressLevel);
 
-    // variable to hold the input fields to 
+    // variable to hold the input fields to reference when repopulating them
     const replace_wtask = document.getElementsByClassName('work');
     replace_wtime = document.getElementsByClassName('workTime');
 
     const replace_otask = document.getElementsByClassName('other');
     const replace_otime = document.getElementsByClassName('otherTime');
+
     const replace_sl = document.getElementById('stressLevel');
     // console.log(oldOtherTasks[0].time);
 
@@ -115,10 +116,10 @@ function repopulate(){
     }
     
     console.log("replace_wtime: " + replace_wtime);
-    console.log("input num field: " + replace_wtime[0].input);
+    console.log("input num field: " + replace_wtime[0].value);
     for(let i = 0; i < replace_wtime.length; i++){
         if(oldWorkTasks[i]){
-            replace_wtime[i].input = oldWorkTasks[i].time;
+            replace_wtime[i].value = oldWorkTasks[i].time;
             console.log("trying to place work time");
             // This is getting the proper number for the time value but not setting it to the input field...
             console.log(replace_wtime[i].input); 
@@ -132,7 +133,14 @@ function repopulate(){
         } 
     }
 
-    // *** add working loop for other time here ***
+    for(let i = 0; i < replace_otime.length; i++){
+        if(oldOtherTasks[i + 2]){
+            replace_otime[i].value = oldOtherTasks[i + 2].time;
+            console.log("trying to place other time");
+            // This is getting the proper number for the time value but not setting it to the input field...
+            console.log(replace_otime[i].input); 
+        }
+    }
 
     // console.log("oldStressLevel: " + oldStressLevel);
     replace_sl.value = oldStressLevel;
