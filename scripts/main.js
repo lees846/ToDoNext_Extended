@@ -102,6 +102,7 @@ function repopulate(){
 
     const replace_otask = document.getElementsByClassName('other');
     const replace_otime = document.getElementsByClassName('otherTime');
+    const replace_sl = document.getElementById('stressLevel');
     // console.log(oldOtherTasks[0].time);
 
     // Repopulate Work Fields
@@ -123,10 +124,16 @@ function repopulate(){
         }
     }
 
-    // Repopulate Other Fields
+    // Repopulate Other Fields (starts at 2 to account for auto suggestions)
     for(let i = 0; i < replace_otask.length; i++){
-        if(oldOtherTasks[i]){
-            replace_otask[i].value = oldOtherTasks[i].task;
-        }
+        if(oldOtherTasks[i + 2]){
+            replace_otask[i].value = oldOtherTasks[i + 2].task;
+        } 
     }
+
+    // *** add working loop for other time here ***
+
+    // console.log("oldStressLevel: " + oldStressLevel);
+    replace_sl.value = oldStressLevel;
+
 }
