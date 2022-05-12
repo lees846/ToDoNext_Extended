@@ -13,6 +13,13 @@ let stressLevel;
 // Template represents the output
 let template;
 
+// Variables from the template
+let longIndex = 0;      // index for the longest work task
+let randWork;
+let randWork2;
+let randOther;
+let randOther2;
+
 // Waits for everything to load then generates a suggestion
 document.addEventListener('DOMContentLoaded', generateSuggestion());
 
@@ -81,13 +88,12 @@ function biasOtherTasks(){
 }
 
 function decideTemplate(){
-    let randWork = workTasks[Math.floor(Math.random()*workTasks.length)].task;
-    let randWork2 = workTasks[Math.floor(Math.random()*workTasks.length)].task;
-    let randOther = otherTasks[Math.floor(Math.random()*otherTasks.length)].task;
-    let randOther2 = otherTasks[Math.floor(Math.random()*otherTasks.length)].task;
+    randWork = workTasks[Math.floor(Math.random()*workTasks.length)].task;
+    randWork2 = workTasks[Math.floor(Math.random()*workTasks.length)].task;
+    randOther = otherTasks[Math.floor(Math.random()*otherTasks.length)].task;
+    randOther2 = otherTasks[Math.floor(Math.random()*otherTasks.length)].task;
 
     // Finds the index of the longest task so it can be prioritized for one template
-    let longIndex = 0;
     let longestTask = workTasks[longIndex].time;
     for (let i = 0; i < workTasks.length; i++){
         const currentTask = workTasks[i].time;
@@ -96,6 +102,7 @@ function decideTemplate(){
             longIndex = i;
         }
     }
+    
 
     // Pick template depending on stress level
     if (stressLevel <= 3){
@@ -109,11 +116,26 @@ function decideTemplate(){
         // "Before you get started, <random other>. This may help you reset before you work on <random work>, then <random other> after an hour of that if you're still overwhelmed."
     }
     console.log(template);
-    return(template);
+    return(template, longIndex);
 }
 
 function displayList(){
     console.log("displayList is being called");
+    // if (stressLevel <= 3){
+    //     li = `${workTasks[longIndex].task} ${randOther} get back to it`
+        
+    // } else if (stressLevel > 3 && stressLevel <= 6){
+    //     li = `${randWork} ${randOther} ${randWork} or ${randWork2}`
+       
+    // } else if (stressLevel > 6){
+    //     li = `${randOther} ${randWork} ${randOther2}`
+       
+    // }
+    const outputList = document.getElementsByClassName('todo');
+    console.log(outputList.length);
+    outputList[0].innerText = workTasks[0].task;
+    // outputList[1].innerHTML = randOther;
+    // outputList[2].innerHTML = workTasks[longIndex].task;
 }
 
 function displaySuggestion(){
