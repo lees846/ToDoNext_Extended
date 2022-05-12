@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function(){
     }
     
     document.querySelector("#submit").addEventListener("click", getUserList);
+    document.querySelector("#about").addEventListener("click", getUserList);
 });
 
 function getUserList(){
