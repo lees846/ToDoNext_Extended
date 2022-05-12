@@ -99,8 +99,12 @@ function repopulate(){
     // variable to hold the input fields to 
     const replace_wtask = document.getElementsByClassName('work');
     replace_wtime = document.getElementsByClassName('workTime');
+
+    const replace_otask = document.getElementsByClassName('other');
+    const replace_otime = document.getElementsByClassName('otherTime');
     // console.log(oldOtherTasks[0].time);
 
+    // Repopulate Work Fields
     // document.getElementById('work0').value = oldWorkTasks[0].task;
     for(let i = 0; i < replace_wtask.length; i++){
         if(oldWorkTasks[i]){
@@ -108,7 +112,7 @@ function repopulate(){
         }
     }
     
-    console.log(replace_wtime);
+    console.log("replace_wtime: " + replace_wtime);
     console.log("input num field: " + replace_wtime[0].input);
     for(let i = 0; i < replace_wtime.length; i++){
         if(oldWorkTasks[i]){
@@ -119,13 +123,10 @@ function repopulate(){
         }
     }
 
-    
-    // document.getElementById('work0').innerHTML = "hi";
-    // let workInput_task = document.getElementsByClassName('work').value;
-    // for (let i = 0; i < workTasks.length; i++){
-        // workInput_task.innerHTML = remembered_wt[0].task;
-        // console.log()
-    // }
-
-    // set input field values to existing stored input
+    // Repopulate Other Fields
+    for(let i = 0; i < replace_otask.length; i++){
+        if(oldOtherTasks[i]){
+            replace_otask[i].value = oldOtherTasks[i].task;
+        }
+    }
 }
